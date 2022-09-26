@@ -27,20 +27,13 @@ For more examples, please see the [examples](examples) folder.
 
 Please follow the instructions below based on your platform:
 
-### Linux
+|Platform|URL|
+|-|-|
+|Linux|[Godot Engine - Download \| Linux](https://godotengine.org/download/linux)|
+|macOS|[Godot Engine - Download \| Mac OS](https://godotengine.org/download/osx)|
+|Windows|[Godot Engine - Download \| Windows](https://godotengine.org/download/windows)|
 
-Simply follow the download instructions in
-[Godot Engine - Download | Linux](https://godotengine.org/download/linux)
-
-### macOS
-
-Simply follow the instructions in
-[Godot Engine - Download | Mac OS](https://godotengine.org/download/osx)
-
-### Windows
-
-Simply follow the instructions in
-[Godot Engine - Download | Windows](https://godotengine.org/download/windows)
+Please make sure that `godot` is accessible from your `PATH` variable.
 
 ## Installation
 
