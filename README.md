@@ -7,6 +7,11 @@ Experimental stuff.
 
 Basically having fun with Godot and Raku :)
 
+## References
+
+- [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html)
+- [Command line tutorial](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html)
+
 ## Example
 
 ```Raku
