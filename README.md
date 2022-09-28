@@ -83,6 +83,10 @@ $ prove --ext .rakutest -ve "raku -I."
 ```
 $ zef install Test::META
 $ AUTHOR_TESTING=1 prove --ext .rakutest -ve "raku -I."
+
+# On windows
+$ $env:AUTHOR_TESTING=1; prove --ext .rakutest -ve "raku -I."
+
 ```
 
 ## Author
