@@ -27,9 +27,14 @@ use Godot::Fun::Scene;
 
 my $project_folder = 'hello-project';
 
-# Create 3D scene with 5 CSG Boxes
+# Create 3D scene with CSG primitives
 my $scene = Godot::Fun::Scene.new(name => 'Hello', type => 'Spatial');
-$scene.add('Cube0' ~ $_, 'CSGBox') for 1..5;
+$scene.add('Box', 'CSGBox');
+$scene.add('Cylinder', 'CSGCylinder', :tx(5));
+$scene.add('Sphere', 'CSGSphere', :tx(-5));
+$scene.add('Polygon', 'CSGPolygon', :tz(5));
+$scene.add('Mesh', 'CSGMesh');
+$scene.add('Torus', 'CSGTorus', :tz(-5));
 $scene.save($project_folder);
 
 # Create Godot project
