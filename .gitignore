@@ -20,3 +20,6 @@ nytprof.out
 *.bs
 /_eumm/
 .*.sw?
+*.godot
+*.tscn
+*.tres
