@@ -1,4 +1,4 @@
-# Godot::Fun 
+# Godot::Fun
 
 [![Actions
 Status](https://github.com/azawawi/raku-godot-fun/workflows/test/badge.svg)](https://github.com/azawawi/raku-godot-fun/actions)
@@ -6,12 +6,16 @@ Status](https://github.com/azawawi/raku-godot-fun/workflows/test/badge.svg)](htt
 **Warning:** This is totally experimental and is not to meant to used in any production work at
 the moment.
 
-Basically having fun with Godot and Raku :)
+Basically having fun with Godot 3 and Raku :)
 
 The idea here is to do the following:
 - Create a Godot3 project structure with Camelia as a default icon.
 - Add 3D scene with some defaults (e.g. directional light, camera, materials).
 - Run godot project on the final project
+
+## Compatibility
+
+Currently I am testing using Godot 3.5.1
 
 ## References
 
