@@ -10,9 +10,10 @@
   "auth"          : "github:azawawi",
   "authors"       : [ "Ahmad M. Zawawi" ],
   "provides"      : {
-    "Godot::Fun"          : "lib/Godot/Fun.rakumod",
-    "Godot::Fun::Project" : "lib/Godot/Fun/Project.rakumod",
-    "Godot::Fun::Scene"   : "lib/Godot/Fun/Scene.rakumod"
+    "Godot::Fun"           : "lib/Godot/Fun.rakumod",
+    "Godot::Fun::Project"  : "lib/Godot/Fun/Project.rakumod",
+    "Godot::Fun::Scene"    : "lib/Godot/Fun/Scene.rakumod",
+    "Godot::Fun::Resource" : "lib/Godot/Fun/Resource.rakumod"
   },
   "resources"     : [ ],
   "source-url"    : "git://github.com/azawawi/raku-godot-fun.git"

@@ -28,3 +28,9 @@ method to-str {
     }
     $text
 }
+
+method save {
+    my $filename = $!name ~ '.tscn';
+    $filename.IO.spurt(self.to-str);
+    say "Wrote '$filename'";
+}

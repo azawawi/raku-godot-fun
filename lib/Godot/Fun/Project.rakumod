@@ -9,32 +9,53 @@ has Godot::Fun::Scene $.scene;
 method to-str {
     my $main_scene_name = "res://" ~ $!scene.name ~ ".tscn";
     my $project = qq{
-        ; Engine configuration file.
-        ; It's best edited using the editor UI and not directly,
-        ; since the parameters that go here are not all obvious.
-        ;
-        ; Format:
-        ;   [section] ; section goes between []
-        ;   param=value ; assign values to parameters
+    ; Engine configuration file.
+    ; It's best edited using the editor UI and not directly,
+    ; since the parameters that go here are not all obvious.
+    ;
+    ; Format:
+    ;   [section] ; section goes between []
+    ;   param=value ; assign values to parameters
 
-        config_version=4
+    config_version=4
 
-        [application]
+    [application]
 
-        config/name="$!name"
-        run/main_scene="$main_scene_name"
-        config/icon="res://icon.png"
+    config/name="$!name"
+    run/main_scene="$main_scene_name"
+    config/icon="res://icon.png"
 
-        [gui]
+    [gui]
 
-        common/drop_mouse_on_gui_input_disabled=true
+    common/drop_mouse_on_gui_input_disabled=true
 
-        [physics]
+    [physics]
 
-        common/enable_pause_aware_picking=true
+    common/enable_pause_aware_picking=true
 
-        [rendering]
+    [rendering]
 
-        environment/default_environment="res://default_env.tres"
+    environment/default_environment="res://default_env.tres"
     };
+}
+
+method save() {
+    # Write Default environment resource file
+    my $filename = 'default_env.tres';
+    my $default_env = qq{
+    [gd_resource type="Environment" load_steps=2 format=2]
+
+    [sub_resource type="ProceduralSky" id=1]
+
+    [resource]
+    background_mode = 2
+    background_sky = SubResource( 1 )
+    };
+    $filename.IO.spurt($default_env);
+    say "Wrote '$filename'";
+
+    # Write project file
+    $filename = 'project.godot';
+    $filename.IO.spurt(self.to-str);
+    say "Wrote '$filename'";
 }
