@@ -1,0 +1,33 @@
+use v6;
+
+use Test;
+
+my @files = 'project.godot', 'default_env.tres', 'Hello.tscn';
+
+plan 1 + @files;
+
+use Godot::Fun::Project;
+use Godot::Fun::Scene;
+
+my $temp_folder = $*TMPDIR.add(q{raku-godot-fun-} ~ now.Int).mkdir;
+ok $temp_folder ~~ :e, "folder '$temp_folder' is found";
+
+# Create empty godot scene
+my $scene = Godot::Fun::Scene.new(name => 'Hello', type => 'Spatial');
+$scene.save($temp_folder.Str);
+
+# Create godot project
+my $project = Godot::Fun::Project.new(name => 'Hello', scene => $scene);
+$project.save($temp_folder.Str);
+
+# Check that project files have been created
+for @files -> $file {
+    ok $temp_folder.add($file) ~~ :e, "File '$file' is found";
+}
+
+END {
+    # TODO verify why unlink does not work on windows
+    # TODO use File::Temp once it is stable on all platforms
+    unlink @files;
+    unlink $temp_folder;    
+}
