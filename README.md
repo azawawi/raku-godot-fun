@@ -13,14 +13,6 @@ The idea here is to do the following:
 - Add 3D scene with some defaults (e.g. directional light, camera, materials).
 - Run godot project on the final project
 
-## Compatibility
-
-Currently I am testing using Godot 3.5.1
-
-## References
-
-- [Command line tutorial](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html)
-
 ## Example
 
 ```Raku
@@ -55,9 +47,9 @@ For more examples, please see the [examples](examples) folder.
 
 Please follow the instructions below based on your platform:
 
-- [Godot Engine - Download \| Linux](https://godotengine.org/download/linux)|
-- [Godot Engine - Download \| Mac OS](https://godotengine.org/download/osx)|
-- [Godot Engine - Download \| Windows](https://godotengine.org/download/windows)|
+- [Godot Engine - Download \| Linux](https://godotengine.org/download/linux)
+- [Godot Engine - Download \| Mac OS](https://godotengine.org/download/osx)
+- [Godot Engine - Download \| Windows](https://godotengine.org/download/windows)
 
 Please make sure that `godot` is accessible from your `PATH` variable.
 
@@ -86,6 +78,14 @@ $ AUTHOR_TESTING=1 prove --ext .rakutest -ve "raku -I."
 $ $env:AUTHOR_TESTING=1; prove --ext .rakutest -ve "raku -I."
 
 ```
+
+## Compatibility
+
+Currently I am testing using Godot 3.5.1
+
+## References
+
+- [Command line tutorial](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html)
 
 ## Author
 
