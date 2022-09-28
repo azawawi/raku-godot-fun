@@ -39,9 +39,11 @@ method to-str {
     };
 }
 
-method save() {
+method save(Str $folder) {
+    my $project_path = $folder.IO.mkdir;
+
     # Write Default environment resource file
-    my $filename = 'default_env.tres';
+    my $file_path = $project_path.add('default_env.tres');
     my $default_env = qq{
     [gd_resource type="Environment" load_steps=2 format=2]
 
@@ -51,11 +53,11 @@ method save() {
     background_mode = 2
     background_sky = SubResource( 1 )
     };
-    $filename.IO.spurt($default_env);
-    say "Wrote '$filename'";
+    $file_path.spurt($default_env);
+    say "Wrote '$file_path'";
 
     # Write project file
-    $filename = 'project.godot';
-    $filename.IO.spurt(self.to-str);
-    say "Wrote '$filename'";
+    $file_path = $project_path.add('project.godot');
+    $file_path.spurt(self.to-str);
+    say "Wrote '$file_path'";
 }

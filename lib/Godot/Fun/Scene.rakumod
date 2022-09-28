@@ -29,8 +29,9 @@ method to-str {
     $text
 }
 
-method save {
-    my $filename = $!name ~ '.tscn';
-    $filename.IO.spurt(self.to-str);
-    say "Wrote '$filename'";
+method save(Str $folder) {
+    my $project_path = $folder.IO.mkdir;
+    my $file_path = $project_path.add($!name ~ '.tscn');
+    $file_path.spurt(self.to-str);
+    say "Wrote '$file_path'";
 }
