@@ -54,10 +54,10 @@ method save(Str $folder) {
     background_sky = SubResource( 1 )
     };
     $file_path.spurt($default_env);
-    say "Wrote '$file_path'";
+    #say "Wrote '$file_path'";
 
     # Write project file
     $file_path = $project_path.add('project.godot');
     $file_path.spurt(self.to-str);
-    say "Wrote '$file_path'";
+    #say "Wrote '$file_path'";
 }

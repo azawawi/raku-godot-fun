@@ -25,7 +25,6 @@ method to-str {
     $text ~= qq{[node name="$!name" type="$!type"]\n};
     for @children -> $child {
         $text ~= qq{[node name="$child<name>" type="$child<type>" parent="."]\n};
-        say $child;
         next if $child<tx> == 0 && $child<ty> == 0 && $child<tz> == 0;
         $text ~= qq{transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, $child<tx>, $child<ty>, $child<tz> )\n};
     }
@@ -36,5 +35,5 @@ method save(Str $folder) {
     my $project_path = $folder.IO.mkdir;
     my $file_path = $project_path.add($!name ~ '.tscn');
     $file_path.spurt(self.to-str);
-    say "Wrote '$file_path'";
+    #say "Wrote '$file_path'";
 }
