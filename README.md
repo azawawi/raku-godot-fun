@@ -15,7 +15,6 @@ The idea here is to do the following:
 
 ## References
 
-- [SceneTree](https://docs.godotengine.org/en/stable/classes/class_scenetree.html)
 - [Command line tutorial](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html)
 
 ## Example
