@@ -2,7 +2,13 @@ use v6;
 
 use Test;
 
-plan 1;
+plan 3;
 
 use Godot::Fun;
 ok 1, "'use Godot::Fun' worked!";
+
+use Godot::Fun::Project;
+ok 1, "'use Godot::Fun::Project' worked!";
+
+use Godot::Fun::Scene;
+ok 1, "'use Godot::Fun::Scene' worked!";
