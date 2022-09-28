@@ -55,11 +55,9 @@ For more examples, please see the [examples](examples) folder.
 
 Please follow the instructions below based on your platform:
 
-|Platform|URL|
-|-|-|
-|Linux|[Godot Engine - Download \| Linux](https://godotengine.org/download/linux)|
-|macOS|[Godot Engine - Download \| Mac OS](https://godotengine.org/download/osx)|
-|Windows|[Godot Engine - Download \| Windows](https://godotengine.org/download/windows)|
+- [Godot Engine - Download \| Linux](https://godotengine.org/download/linux)|
+- [Godot Engine - Download \| Mac OS](https://godotengine.org/download/osx)|
+- [Godot Engine - Download \| Windows](https://godotengine.org/download/windows)|
 
 Please make sure that `godot` is accessible from your `PATH` variable.
 
