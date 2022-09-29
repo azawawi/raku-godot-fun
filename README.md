@@ -6,7 +6,7 @@ Status](https://github.com/azawawi/raku-godot-fun/workflows/test/badge.svg)](htt
 **Warning:** This is totally experimental and is not to meant to used in any production work at
 the moment.
 
-Basically having fun with Godot 3 and Raku :)
+Basically having fun with Godot 3 Game Engine and Raku :)
 
 The idea here is to do the following:
 - Create a Godot3 project structure with Camelia as a default icon.
@@ -18,25 +18,28 @@ The idea here is to do the following:
 ```Raku
 use v6;
 
+use Godot::Fun;
 use Godot::Fun::Project;
 use Godot::Fun::Scene;
 
 my $project_folder = 'hello-project';
 
-# Create 3D scene with CSG primitives
-my $scene = Godot::Fun::Scene.new(name => 'Hello', type => 'Spatial');
-$scene.add('Box', 'CSGBox');
-$scene.add('Cylinder', 'CSGCylinder', :tx(5));
-$scene.add('Sphere', 'CSGSphere', :tx(-5));
-$scene.add('Polygon', 'CSGPolygon', :tz(5));
-$scene.add('Mesh', 'CSGMesh');
-$scene.add('Torus', 'CSGTorus', :tz(-5));
-$scene.add('DirectionalLight', 'DirectionalLight');
-$scene.add('Camera', 'Camera', :ty(3.5), :tz(10.5));
+# Create 3D scene with CSG primitives, directional light and camera
+my $spatial = Godot::Fun::Spatial.new(name => 'Spatial');
+$spatial.add(Godot::Fun::CSGBox.new);
+$spatial.add(Godot::Fun::CSGCylinder.new(tx => 5));
+$spatial.add(Godot::Fun::CSGSphere.new(tx => -5));
+$spatial.add(Godot::Fun::CSGPolygon.new(tz => 5));
+$spatial.add(Godot::Fun::CSGMesh.new);
+$spatial.add(Godot::Fun::CSGTorus.new(tz => -5));
+$spatial.add(Godot::Fun::DirectionalLight.new);
+$spatial.add(Godot::Fun::Camera.new(ty => 3.5, tz => 10.5));
+
+my $scene = Godot::Fun::Scene.new(name => 'Hello', root_node => $spatial);
 $scene.save($project_folder);
 
 # Create Godot project
-my $project = Godot::Fun::Project.new(name => 'Hello', scene => $scene);
+my $project = Godot::Fun::Project.new(name => 'Hello From Raku!', scene => $scene);
 $project.save($project_folder);
 
 # Open project in Godot
@@ -47,11 +50,11 @@ For more examples, please see the [examples](examples) folder.
 
 ## Prerequisites
 
-Please follow the instructions below based on your platform:
+Please follow the instructions to install Godot engine based on your platform:
 
-- [Godot Engine - Download \| Linux](https://godotengine.org/download/linux)
-- [Godot Engine - Download \| Mac OS](https://godotengine.org/download/osx)
-- [Godot Engine - Download \| Windows](https://godotengine.org/download/windows)
+- [Godot on Linux](https://godotengine.org/download/linux)
+- [Godot on macOS](https://godotengine.org/download/osx)
+- [Godot on Windows](https://godotengine.org/download/windows)
 
 Please make sure that `godot` is accessible from your `PATH` variable.
 
