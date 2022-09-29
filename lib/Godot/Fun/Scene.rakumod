@@ -5,7 +5,7 @@ has Str $.name;
 has Str $.type;
 has @children;
 
-method add(Str $name, Str $type, Int :$tx = 0, Int :$ty = 0, Int :$tz = 0) {
+method add(Str $name, Str $type, Real :$tx = 0.0, Real :$ty = 0.0, Real :$tz = 0.0) {
     # Validate node name
     # node name should not contain the following chars:
     # . : @ / " %
