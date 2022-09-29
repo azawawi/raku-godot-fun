@@ -13,7 +13,8 @@ my $temp_folder = $*TMPDIR.add(q{raku-godot-fun-} ~ now.Int).mkdir;
 ok $temp_folder ~~ :e, "folder '$temp_folder' is found";
 
 # Create empty godot scene
-my $scene = Godot::Fun::Scene.new(name => 'Hello', type => 'Spatial');
+my $spatial = Godot::Fun::Spatial.new(name => 'Spatial');
+my $scene = Godot::Fun::Scene.new(name => 'Hello', root_node => $spatial);
 $scene.save($temp_folder.Str);
 
 # Create godot project
