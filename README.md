@@ -13,6 +13,13 @@ The idea here is to do the following:
 - Add 3D scene with some defaults (e.g. directional light, camera, materials).
 - Run godot project on the final project
 
+
+![Raku example
+1](https://raw.githubusercontent.com/azawawi/raku-godot-fun/main/screenshots/example1.png)
+
+![Raku example
+2](https://raw.githubusercontent.com/azawawi/raku-godot-fun/main/screenshots/example2.png)
+
 ## Example
 
 ```Raku
