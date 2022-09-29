@@ -31,6 +31,8 @@ $scene.add('Sphere', 'CSGSphere', :tx(-5));
 $scene.add('Polygon', 'CSGPolygon', :tz(5));
 $scene.add('Mesh', 'CSGMesh');
 $scene.add('Torus', 'CSGTorus', :tz(-5));
+$scene.add('DirectionalLight', 'DirectionalLight');
+$scene.add('Camera', 'Camera', :ty(3.5), :tz(10.5));
 $scene.save($project_folder);
 
 # Create Godot project
