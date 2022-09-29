@@ -9,7 +9,7 @@ use Godot::Fun::Scene;
 my $project_folder = 'hello-project';
 
 # Create 3D scene with CSG primitives, directional light and camera
-my $spatial = Godot::Fun::Spatial.new(name => 'Spatial');
+my $spatial = Godot::Fun::Spatial.new;
 $spatial.add(Godot::Fun::CSGBox.new);
 $spatial.add(Godot::Fun::CSGCylinder.new(tx => 5));
 $spatial.add(Godot::Fun::CSGSphere.new(tx => -5));
