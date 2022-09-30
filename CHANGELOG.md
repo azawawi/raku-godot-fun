@@ -1,7 +1,7 @@
 
 # Changelog
 
-## Not released
+## 0.3.0 - Fri 2022-09-30
 - Add CSGCombiner
 - Beautify the examples. Less parenthesis.
 - Only one screenshot is needed.
