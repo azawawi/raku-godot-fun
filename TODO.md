@@ -22,9 +22,7 @@ $scene
 	.add(csg-box.name('Box'))
 	.add(sprite3d.name('Sprite3D').tx(5).texture($texture_resource);
 
-# [node name="DirectionalLight" type="DirectionalLight" parent="."]
 # transform = Transform( -0.943089, -0.33254, 0, 0.33254, -0.943089, 0, 0, 0, 1, 0, 0, 0 )
-# shadow_enabled = true
 
 # [sub_resource type="Animation" id=1]
 # resource_name = "Anim #1"
