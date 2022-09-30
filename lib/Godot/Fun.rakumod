@@ -12,22 +12,78 @@ Godot::Fun - Raku Fun with Godot
 
 =end pod
 
+my $ext_id = 1;
+my $sub_id = 1;
+
 role Godot::Fun::Resource {
-    has Str $.path is required;
     has Str $.type;
+}
+
+role Godot::Fun::ExtResource does Godot::Fun::Resource {
+    has Str $.path is required;
     has Int $.id;
+
+    # TODO remove ugly workaround
+    method TWEAK {
+        $!id = $ext_id++;
+    }
 
     method render() returns Str {
         my $path = self.path;
         my $type = self.type;
         my $id = self.id;
-        my $text = qq{[ext_resource path="$path" type="$type" id=$id]\n};
+        my $text = qq{[ext_resource path="$path" type="$type" id=$id]\n\n};
         $text
     }
 }
 
-class Godot::Fun::TextureResource is Godot::Fun::Resource {
+role Godot::Fun::SubResource does Godot::Fun::Resource {
+    has Int $.id;
+
+    # TODO remove ugly workaround
+    method TWEAK {
+        $!id = $sub_id++;
+    }
+
+    method render() returns Str {
+        my $type = self.type;
+        my $id = self.id;
+        my $text = qq{[sub_resource type="$type" id=$id]\n};
+        $text
+    }
+}
+
+class Godot::Fun::TextureResource is Godot::Fun::ExtResource {
     has Str $.type = 'Texture';
+}
+
+class Godot::Fun::Color {
+    has Real $.red = 0.0;
+    has Real $.green = 0.0;
+    has Real $.blue = 0.0;
+    has Real $.alpha = 1.0;
+}
+
+class Godot::Fun::SpatialMaterial is Godot::Fun::SubResource {
+    has Str $.type = 'SpatialMaterial';
+    has Godot::Fun::Color $.albedo_color;
+
+    method render() returns Str {
+        my $type = self.type;
+        my $id = self.id;
+        my $r = $.albedo_color.red;
+        my $g = $.albedo_color.green;
+        my $b = $.albedo_color.blue;
+        my $a = $.albedo_color.alpha;
+        my $text = self.Godot::Fun::SubResource::render;
+        $text ~= qq{albedo_color = Color( $r, $g, $b, $a )\n\n};
+        $text
+    }
+}
+
+#TODO handle ShaderMaterial in the future
+role Godot::Fun::HasAMaterial {
+    has Godot::Fun::SpatialMaterial $.material;
 }
 
 role Godot::Fun::Node {
@@ -72,25 +128,31 @@ role Godot::Fun::Node {
         my $tx   = self.tx;
         my $ty   = self.ty;
         my $tz   = self.tz;
-        my $text ~= qq{[node name="$name" type="$type" parent="."]\n};
+        my $text = qq{[node name="$name" type="$type" parent="."]\n};
         unless $tx == 0 && $ty == 0 && $tz == 0 {
             $text ~= qq{transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, $tx, $ty, $tz )\n};
         }
+        if self.does(Godot::Fun::HasAMaterial) && self.material {
+            my $material_id = self.material.id;
+            $text ~= qq{material = SubResource( $material_id )\n};
+        }
+        $text ~= "\n";
         $text
     }
 }
+
 
 class Godot::Fun::Spatial is Godot::Fun::Node {
     has Str $.name = 'Spatial';
     has Str $.type = 'Spatial';
 }
 
-class Godot::Fun::CSGBox is Godot::Fun::Node {
+class Godot::Fun::CSGBox is Godot::Fun::Node does Godot::Fun::HasAMaterial {
     has Str $.name = 'CSGBox';
     has Str $.type = 'CSGBox';
 }
 
-class Godot::Fun::CSGCylinder is Godot::Fun::Node {
+class Godot::Fun::CSGCylinder is Godot::Fun::Node does Godot::Fun::HasAMaterial {
     has Str $.name = 'CSGCylinder';
     has Str $.type = 'CSGCylinder';
 }
@@ -100,17 +162,17 @@ class Godot::Fun::CSGMesh is Godot::Fun::Node {
     has Str $.type = 'CSGMesh';
 }
 
-class Godot::Fun::CSGPolygon is Godot::Fun::Node {
+class Godot::Fun::CSGPolygon is Godot::Fun::Node does Godot::Fun::HasAMaterial {
     has Str $.name = 'CSGPolygon';
     has Str $.type = 'CSGPolygon';
 }
 
-class Godot::Fun::CSGSphere is Godot::Fun::Node {
+class Godot::Fun::CSGSphere is Godot::Fun::Node does Godot::Fun::HasAMaterial {
     has Str $.name = 'CSGSphere';
     has Str $.type = 'CSGSphere';
 }
 
-class Godot::Fun::CSGTorus is Godot::Fun::Node {
+class Godot::Fun::CSGTorus is Godot::Fun::Node does Godot::Fun::HasAMaterial {
     has Str $.name = 'CSGTorus';
     has Str $.type = 'CSGTorus';
 }

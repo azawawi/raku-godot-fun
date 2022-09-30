@@ -5,6 +5,9 @@
 - Add node name validation.
 - Remove deprecated Scene.add method.
 - Move assets copy logic to ::Project.
+- Add colored materials.
+- Add external and sub resources automatic counter.
+- Add whitespace between nodes, resources in rendered text.
 
 ## 0.3.0 - Fri 2022-09-30
 - Add CSGCombiner

@@ -9,13 +9,24 @@ use Godot::Fun::Scene;
 my $project_folder = 'hello-project';
 
 # Create 3D scene with CSG primitives, directional light and camera
+
 my $spatial = Godot::Fun::Spatial.new;
-$spatial.add: Godot::Fun::CSGBox.new;
-$spatial.add: Godot::Fun::CSGCylinder.new(tx =>  5);
-$spatial.add: Godot::Fun::CSGSphere.new(tx => -5);
-$spatial.add: Godot::Fun::CSGPolygon.new(tz =>  5);
+my $red = Godot::Fun::Color.new(red => 1);
+my $green = Godot::Fun::Color.new(green => 1);
+my $blue = Godot::Fun::Color.new(blue => 1);
+my $yellow = Godot::Fun::Color.new(red => 1, green => 1);
+my $pink = Godot::Fun::Color.new(red => 1, blue => 1);
+my $red_material = Godot::Fun::SpatialMaterial.new(albedo_color => $red);
+my $green_material = Godot::Fun::SpatialMaterial.new(albedo_color => $blue);
+my $blue_material = Godot::Fun::SpatialMaterial.new(albedo_color => $green);
+my $yellow_material = Godot::Fun::SpatialMaterial.new(albedo_color => $yellow);
+my $pink_material = Godot::Fun::SpatialMaterial.new(albedo_color => $pink);
+$spatial.add: Godot::Fun::CSGBox.new(material => $red_material);
+$spatial.add: Godot::Fun::CSGCylinder.new(tx =>  5, material => $green_material);
+$spatial.add: Godot::Fun::CSGSphere.new(tx => -5, material => $blue_material);
+$spatial.add: Godot::Fun::CSGTorus.new(tz => -5, material => $yellow_material);
+$spatial.add: Godot::Fun::CSGPolygon.new(tz =>  5, material => $pink_material);
 $spatial.add: Godot::Fun::CSGMesh.new;
-$spatial.add: Godot::Fun::CSGTorus.new(tz => -5);
 $spatial.add: Godot::Fun::CSGCombiner.new;
 $spatial.add: Godot::Fun::DirectionalLight.new(shadow_enabled => True);
 $spatial.add: Godot::Fun::Camera.new(ty => 3.5, tz => 10.5);
@@ -23,12 +34,16 @@ $spatial.add: Godot::Fun::Camera.new(ty => 3.5, tz => 10.5);
 my $texture = Godot::Fun::TextureResource.new(
     name => "camelia.png",
     path => "res://assets/camelia.png",
-    id => 1
 );
 $spatial.add: Godot::Fun::Sprite3D.new(texture => $texture, ty => 3);
 
 my $scene = Godot::Fun::Scene.new: name => 'Hello', root_node => $spatial;
 $scene.add($texture);
+$scene.add($red_material);
+$scene.add($green_material);
+$scene.add($blue_material);
+$scene.add($yellow_material);
+$scene.add($pink_material);
 $scene.save: $project_folder;
 
 # Create Godot project

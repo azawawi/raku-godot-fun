@@ -10,7 +10,7 @@ use Godot::Fun;
 {
     my $node = Godot::Fun::Node.new;
     my $text = $node.render;
-    ok $text.lines.elems == 1, "Only one line is expected";
+    ok $text.lines.elems == 2, "Only 2 lines are expected";
     ok $text.lines[0] eq '[node name="Node" type="Node" parent="."]',
         'Rendered name, type and parent are correct';
 }
@@ -18,9 +18,8 @@ use Godot::Fun;
 {
     my $node = Godot::Fun::Node.new(tx => 5);
     my $text = $node.render;
-    ok $text.lines.elems == 2, "Two lines are expected";
+    ok $text.lines.elems == 3, "3 lines are expected";
     my @lines = $text.lines;
-    say @lines;
     ok @lines[0] eq '[node name="Node" type="Node" parent="."]',
         'Rendered name, type and parent are correct';
     ok @lines[1] eq 'transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )',
@@ -31,7 +30,7 @@ use Godot::Fun;
 {
     my $spatial = Godot::Fun::Spatial.new;
     my $text = $spatial.render;
-    ok $text.lines.elems == 1, "Only one line is expected";
+    ok $text.lines.elems == 2, "Only 2 lines are expected";
     ok $text.lines[0] eq '[node name="Spatial" type="Spatial" parent="."]',
         'Rendered name, type and parent are correct';
 }
@@ -39,9 +38,8 @@ use Godot::Fun;
 {
     my $spatial = Godot::Fun::Spatial.new(tx => 5);
     my $text = $spatial.render;
-    ok $text.lines.elems == 2, "Two lines are expected";
+    ok $text.lines.elems == 3, "3 lines are expected";
     my @lines = $text.lines;
-    say @lines;
     ok @lines[0] eq '[node name="Spatial" type="Spatial" parent="."]',
         'Rendered name, type and parent are correct';
     ok @lines[1] eq 'transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )',
