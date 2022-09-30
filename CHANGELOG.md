@@ -11,6 +11,7 @@
 - Breaking change: Move Godot::Fun::Resource to Godot::Fun
 - Add ::Sprite3D and ::TextureResource
 - Update example to show Camelia sprite3d :)
+- Add `shadow_enabled` to Godot::Fun::DirectionalLight.
 
 ## 0.2.2 - Fri 2022-09-30
 - Add a proper Changelog.

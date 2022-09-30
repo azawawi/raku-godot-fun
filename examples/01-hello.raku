@@ -17,7 +17,7 @@ $spatial.add: Godot::Fun::CSGPolygon.new(tz =>  5);
 $spatial.add: Godot::Fun::CSGMesh.new;
 $spatial.add: Godot::Fun::CSGTorus.new(tz => -5);
 $spatial.add: Godot::Fun::CSGCombiner.new;
-$spatial.add: Godot::Fun::DirectionalLight.new;
+$spatial.add: Godot::Fun::DirectionalLight.new(shadow_enabled => True);
 $spatial.add: Godot::Fun::Camera.new(ty => 3.5, tz => 10.5);
 
 my $texture = Godot::Fun::TextureResource.new(

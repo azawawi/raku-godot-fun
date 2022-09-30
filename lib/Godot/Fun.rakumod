@@ -105,6 +105,13 @@ class Godot::Fun::CSGCombiner is Godot::Fun::Node {
 class Godot::Fun::DirectionalLight is Godot::Fun::Node {
     has Str $.name= 'DirectionalLight';
     has Str $.type = 'DirectionalLight';
+    has Bool $.shadow_enabled;
+
+    method render() returns Str {
+        my $text = self.Godot::Fun::Node::render;
+        $text ~= qq{shadow_enabled = true\n} if $!shadow_enabled;
+        $text
+    }
 }
 
 class Godot::Fun::Camera is Godot::Fun::Node {
