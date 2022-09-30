@@ -1,9 +1,9 @@
 {
   "name"          : "Godot::Fun",
   "license"       : "MIT",
-  "version"       : "0.2.1",
+  "version"       : "0.2.2",
   "perl"          : "6.d",
-  "description"   : "Raku fun with Godot",
+  "description"   : "Raku fun with Godot 3",
   "test-depends"  : [
     "Test"
   ],
