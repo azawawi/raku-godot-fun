@@ -157,11 +157,11 @@ class Godot::Fun::CSGBox is Godot::Fun::Node does Godot::Fun::HasAMaterial {
     method render() returns Str {
         my $text = self.Godot::Fun::Node::render;
         $text ~= qq{width = $!width\n}
-            if $!width != 2.0;
+            if $!width != 2;
         $text ~= qq{height = $!height\n}
-            if $!height != 2.0;
+            if $!height != 2;
         $text ~= qq{depth = $!depth\n}
-            if $!depth != 2.0;
+            if $!depth != 2;
         $text
     }
 }
@@ -169,6 +169,23 @@ class Godot::Fun::CSGBox is Godot::Fun::Node does Godot::Fun::HasAMaterial {
 class Godot::Fun::CSGCylinder is Godot::Fun::Node does Godot::Fun::HasAMaterial {
     has Str $.name = 'CSGCylinder';
     has Str $.type = 'CSGCylinder';
+    has Real $.radius = 1;
+    has Real $.height = 1;
+    has Int $.sides = 8;
+    has Bool $.cone;
+
+    method render() returns Str {
+        my $text = self.Godot::Fun::Node::render;
+        $text ~= qq{radius = $!radius\n}
+            if $!radius != 1;
+        $text ~= qq{height = $!height\n}
+            if $!height != 1;
+        $text ~= qq{sides = $!sides\n}
+            if $!sides != 8;
+        $text ~= qq{cone = true\n}
+            if $!cone;
+        $text
+    }
 }
 
 class Godot::Fun::CSGMesh is Godot::Fun::Node {

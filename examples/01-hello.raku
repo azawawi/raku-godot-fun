@@ -17,12 +17,14 @@ my $blue = Godot::Fun::Color.new(blue => 1);
 my $yellow = Godot::Fun::Color.new(red => 1, green => 1);
 my $pink = Godot::Fun::Color.new(red => 1, blue => 1);
 my $grey = Godot::Fun::Color.new(red => 0.5, green => 0.5, blue => 0.5);
+my $orange = Godot::Fun::Color.new(red => 1, green => 0.6);
 my $red_material = Godot::Fun::SpatialMaterial.new(albedo_color => $red);
 my $green_material = Godot::Fun::SpatialMaterial.new(albedo_color => $blue);
 my $blue_material = Godot::Fun::SpatialMaterial.new(albedo_color => $green);
 my $yellow_material = Godot::Fun::SpatialMaterial.new(albedo_color => $yellow);
 my $pink_material = Godot::Fun::SpatialMaterial.new(albedo_color => $pink);
 my $grey_material = Godot::Fun::SpatialMaterial.new(albedo_color => $grey);
+my $orange_material = Godot::Fun::SpatialMaterial.new(albedo_color => $orange);
 $spatial.add: Godot::Fun::CSGBox.new(name => 'Floor', ty => -1.0, material => $grey_material,
     width => 20, height => 0.25, depth => 20);
 $spatial.add: Godot::Fun::CSGBox.new(material => $red_material);
@@ -31,9 +33,11 @@ $spatial.add: Godot::Fun::CSGSphere.new(tx => -5, material => $blue_material);
 $spatial.add: Godot::Fun::CSGTorus.new(tz => -5, material => $yellow_material);
 $spatial.add: Godot::Fun::CSGPolygon.new(tz =>  5, material => $pink_material);
 $spatial.add: Godot::Fun::CSGMesh.new;
+$spatial.add: Godot::Fun::CSGCylinder.new(name => 'Cone', tx => 8, height => 2, cone => True,
+    material => $orange_material);
 $spatial.add: Godot::Fun::CSGCombiner.new;
 $spatial.add: Godot::Fun::DirectionalLight.new(shadow_enabled => True);
-$spatial.add: Godot::Fun::Camera.new(ty => 3.5, tz => 10.5);
+$spatial.add: Godot::Fun::Camera.new(tx => 2, ty => 4, tz => 11);
 
 my $texture = Godot::Fun::TextureResource.new(
     name => "camelia.png",
@@ -49,6 +53,7 @@ $scene.add($blue_material);
 $scene.add($yellow_material);
 $scene.add($pink_material);
 $scene.add($grey_material);
+$scene.add($orange_material);
 $scene.save: $project_folder;
 
 # Create Godot project
