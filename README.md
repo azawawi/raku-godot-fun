@@ -102,6 +102,7 @@ Currently I am testing using Godot 3.5.1
 
 ## References
 
+- [TSCN file format](https://docs.godotengine.org/en/stable/development/file_formats/tscn.htm://docs.godotengine.org/en/stable/development/file_formats/tscn.html)
 - [Command line tutorial](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html)
 
 ## Author
