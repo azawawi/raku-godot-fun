@@ -9,13 +9,14 @@ use Godot::Fun::Scene;
 my $project_folder = 'hello-project';
 
 # Create 3D scene with CSG primitives, directional light and camera
-my $spatial = Godot::Fun::Spatial.new(name => 'Mai');
-$spatial.add(Godot::Fun::CSGBox.new(name => "Cube" ~ $_)) for 1..100;
+my $spatial = Godot::Fun::Spatial.new);
+$spatial.add(Godot::Fun::CSGBox.new);
 $spatial.add(Godot::Fun::CSGCylinder.new(tx => 5));
 $spatial.add(Godot::Fun::CSGSphere.new(tx => -5));
 $spatial.add(Godot::Fun::CSGPolygon.new(tz => 5));
 $spatial.add(Godot::Fun::CSGMesh.new);
 $spatial.add(Godot::Fun::CSGTorus.new(tz => -5));
+$spatial.add(Godot::Fun::CSGCombiner.new);
 $spatial.add(Godot::Fun::DirectionalLight.new);
 $spatial.add(Godot::Fun::Camera.new(ty => 3.5, tz => 10.5));
 

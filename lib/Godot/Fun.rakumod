@@ -66,6 +66,11 @@ class Godot::Fun::CSGTorus is Godot::Fun::Node {
     has Str $.type = 'CSGTorus';
 }
 
+class Godot::Fun::CSGCombiner is Godot::Fun::Node {
+    has Str $.name = 'CSGCombiner';
+    has Str $.type = 'CSGCombiner';
+}
+
 class Godot::Fun::DirectionalLight is Godot::Fun::Node {
     has Str $.name= 'DirectionalLight';
     has Str $.type = 'DirectionalLight';
