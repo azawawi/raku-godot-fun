@@ -5,6 +5,8 @@
 - Add CSGCombiner
 - Beautify the examples. Less parenthesis.
 - Only one screenshot is needed.
+- Deprecated Scene.add.
+- Move rendering logic to child node.
 
 ## 0.2.2 - Fri 2022-09-30
 - Add a proper Changelog.

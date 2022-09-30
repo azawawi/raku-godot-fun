@@ -29,12 +29,26 @@ role Godot::Fun::Node {
     method add(Godot::Fun::Node $child) {
         @.children.push($child);
     }
+
+    method render() returns Str {
+        my $name = self.name;
+        my $type = self.type;
+        my $tx   = self.tx;
+        my $ty   = self.ty;
+        my $tz   = self.tz;
+        my $text ~= qq{[node name="$name" type="$type" parent="."]\n};
+        unless $tx == 0 && $ty == 0 && $tz == 0 {
+            $text ~= qq{transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, $tx, $ty, $tz )\n};
+        }
+        $text
+    }
 }
 
 class Godot::Fun::Spatial is Godot::Fun::Node {
     has Str $.name = 'Spatial';
     has Str $.type = 'Spatial';
 }
+
 
 class Godot::Fun::CSGBox is Godot::Fun::Node {
     has Str $.name = 'CSGBox';
