@@ -41,7 +41,26 @@ role Godot::Fun::Node {
     has Real $.rz = 0.0;
     has Godot::Fun::Node @.children;
 
-    # TODO validate name if set again
+    method TWEAK {
+        # Trim name
+        $!name = $!name.trim;
+
+        die "Empty node name is not allowed"
+            if $!name eq '';
+
+        #
+        # Validate node name
+        # node name should not contain the following chars:
+        # .  :  @  /  "  %
+        #
+        my @bad_chars = '.', ':', '@', '/', '"', '%';
+        for @bad_chars -> $bad_char {
+            if $!name.contains($bad_char) {
+                # Invalid node name
+                die q{Node name should not contains the following characters:\n} ~ @bad_chars.join(' ');
+            }
+        }
+    }
 
     method add(Godot::Fun::Node $child) {
         @.children.push($child);
@@ -65,7 +84,6 @@ class Godot::Fun::Spatial is Godot::Fun::Node {
     has Str $.name = 'Spatial';
     has Str $.type = 'Spatial';
 }
-
 
 class Godot::Fun::CSGBox is Godot::Fun::Node {
     has Str $.name = 'CSGBox';

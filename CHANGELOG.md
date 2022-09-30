@@ -1,6 +1,9 @@
 
 # Changelog
 
+## Not released
+- Add node name validation.
+
 ## 0.3.0 - Fri 2022-09-30
 - Add CSGCombiner
 - Beautify the examples. Less parenthesis.

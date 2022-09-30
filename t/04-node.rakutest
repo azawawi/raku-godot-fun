@@ -1,0 +1,32 @@
+use v6;
+
+use Test;
+
+my @bad_chars = '.', ':', '@', '/', '"', '%';
+
+plan 5 + @bad_chars.elems;
+
+use Godot::Fun;
+
+# Validate node name
+for @bad_chars -> $bad_char {
+    dies-ok { Godot::Fun::Node.new(name => 'Node' ~ $bad_char) },
+        "Invalid node name: $bad_char";
+}
+
+dies-ok { Godot::Fun::Node.new(name => '') },
+    "Empty name is invalid";
+
+lives-ok { Godot::Fun::Node.new(name => "ValidName") },
+    "Valid name works";
+
+lives-ok { Godot::Fun::Node.new(name => "Valid Name") },
+    "Valid name works with whitespace in the middle";
+
+dies-ok { Godot::Fun::Node.new(name => '  ') }, "Whitespace only Should fail";
+
+my $should_be_trimmed = ' Should Be Trimmed ';
+my $node = Godot::Fun::Node.new(name => $should_be_trimmed);
+ok $node.name eq $should_be_trimmed.trim(),
+    "Node name is auto trimmed";
+
