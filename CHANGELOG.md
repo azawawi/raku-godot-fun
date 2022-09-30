@@ -1,6 +1,9 @@
 
 # Changelog
 
+## Not released
+- ...
+
 ## 0.2.2  Fri 2022-09-30 04:38:56 +0300
 - Add a proper Changelog.
 - Less code.
