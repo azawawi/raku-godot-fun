@@ -4,6 +4,7 @@
 ## Not released
 - Add CSGCombiner
 - Beautify the examples. Less parenthesis.
+- Only one screenshot is needed.
 
 ## 0.2.2 - Fri 2022-09-30
 - Add a proper Changelog.
