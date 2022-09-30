@@ -4,12 +4,6 @@ use Test;
 
 plan 3;
 
-use Godot::Fun;
-ok 1, "'use Godot::Fun' worked!";
-
-use Godot::Fun::Project;
-ok 1, "'use Godot::Fun::Project' worked!";
-
-use Godot::Fun::Scene;
-ok 1, "'use Godot::Fun::Scene' worked!";
-
+use-ok 'Godot::Fun';
+use-ok 'Godot::Fun::Project';
+use-ok 'Godot::Fun::Scene';
