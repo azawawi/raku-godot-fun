@@ -6,6 +6,8 @@
 - Add a grey CSG Box floor in the example.
 - Add radius, height, sides and cone flag to CSGCylinder.
 - Add an orange cone in the example.
+- Add radius, radial_segments, rings and smooth_faces to CSGSphere.
+- Add smooth_faces to CSGCylinder.
 
 ## 0.4.0 - Fri 2022-09-30
 - Add node name validation.

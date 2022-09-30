@@ -173,6 +173,7 @@ class Godot::Fun::CSGCylinder is Godot::Fun::Node does Godot::Fun::HasAMaterial 
     has Real $.height = 1;
     has Int $.sides = 8;
     has Bool $.cone;
+    has Bool $.smooth_faces = True;
 
     method render() returns Str {
         my $text = self.Godot::Fun::Node::render;
@@ -184,6 +185,8 @@ class Godot::Fun::CSGCylinder is Godot::Fun::Node does Godot::Fun::HasAMaterial 
             if $!sides != 8;
         $text ~= qq{cone = true\n}
             if $!cone;
+        $text ~= qq{smooth_faces = False\n}
+            unless $!smooth_faces;;
         $text
     }
 }
@@ -199,8 +202,26 @@ class Godot::Fun::CSGPolygon is Godot::Fun::Node does Godot::Fun::HasAMaterial {
 }
 
 class Godot::Fun::CSGSphere is Godot::Fun::Node does Godot::Fun::HasAMaterial {
+
     has Str $.name = 'CSGSphere';
     has Str $.type = 'CSGSphere';
+    has Real $.radius = 1.0;
+    has Int $.radial_segments = 12;
+    has Int $.rings = 6;
+    has Bool $.smooth_faces = True;
+
+    method render() returns Str {
+        my $text = self.Godot::Fun::Node::render;
+        $text ~= qq{radius = $!radius\n}
+            if $!radius != 1.0;
+        $text ~= qq{radial_segments = $!radial_segments\n}
+            if $!radial_segments != 12;
+        $text ~= qq{rings = $!rings\n}
+            if $!rings != 6;
+        $text ~= qq{smooth_faces = False\n}
+            unless $!smooth_faces;
+        $text
+    }
 }
 
 class Godot::Fun::CSGTorus is Godot::Fun::Node does Godot::Fun::HasAMaterial {
