@@ -4,17 +4,17 @@
 ## Not released
 - ...
 
-## 0.2.2  Fri 2022-09-30 04:38:56 +0300
+## 0.2.2 - Fri 2022-09-30 04:38:56 +0300
 - Add a proper Changelog.
 - Less code.
 - Update TODO.
 - Removed old TODO example.
 - Make screenshots smaller.
 
-## 0.2.1  Thu 2022-09-29 08:22:43 +0300
+## 0.2.1 - Thu 2022-09-29 08:22:43 +0300
 - Add example screenshots to README
 
-## 0.2.0  Thu 2022-09-29 08:02:49 +0300
+## 0.2.0 - Thu 2022-09-29 08:02:49 +0300
 - Update project test.
 - Update example to have extra OO sugar fun.
 - Scene now has a root node.
@@ -28,7 +28,7 @@
 - Less debug info.
 - Added more CSG primitives and basic translation.
 
-## 0.1.0  Wed 2022-09-28 07:07:22 +0300
+## 0.1.0 - Wed 2022-09-28 07:07:22 +0300
 
 - Move example file to examples.
 - Remove unneeded gdscript and doc refs.
@@ -47,7 +47,7 @@
 - Simplify prerequisites section in README.
 - Add references section and a sample command line hello gdscript.
 
-## 0.0.1  Mon 2022-09-26 05:12:10 +0300
+## 0.0.1 - Mon 2022-09-26 05:12:10 +0300
 
 - Added Github test workflow.
 - Added Initial project structure.
