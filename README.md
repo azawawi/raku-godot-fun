@@ -54,11 +54,6 @@ $scene.save: $project_folder;
 my $project = Godot::Fun::Project.new: name => 'Hello From Raku!', scene => $scene;
 $project.save: $project_folder;
 
-# Copy assets
-my $assets_folder = $project_folder.IO.add("assets");
-$assets_folder.mkdir;
-$*PROGRAM.dirname.IO.add("assets").add("camelia.png").IO.copy($assets_folder.add("camelia.png"));
-
 # Open project in Godot
 run 'godot', $project_folder.IO.add: 'project.godot';
 ```

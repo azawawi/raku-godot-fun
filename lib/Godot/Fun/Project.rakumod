@@ -23,7 +23,7 @@ method to-str {
 
     config/name="$!name"
     run/main_scene="$main_scene_name"
-    config/icon="res://icon.png"
+    config/icon="res://assets/camelia.png"
 
     [gui]
 
@@ -56,6 +56,12 @@ method save(Str $folder) {
     $file_path.spurt($default_env);
 
     # Write project file
-    $file_path = $project_path.add('project.godot');
+    $file_path = $project_path.add: 'project.godot';
     $file_path.spurt(self.to-str);
+
+    # Make assets folder, copy assets to their proper paths
+    my $assets_folder = $project_path.add('assets');
+    $assets_folder.mkdir;
+    my $image = %?RESOURCES<assets/camelia.png>;
+    $image.copy($assets_folder.add('camelia.png'));
 }

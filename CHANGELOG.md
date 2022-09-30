@@ -4,6 +4,7 @@
 ## Not released
 - Add node name validation.
 - Remove deprecated Scene.add method.
+- Move assets copy logic to ::Project.
 
 ## 0.3.0 - Fri 2022-09-30
 - Add CSGCombiner
