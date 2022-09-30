@@ -1,22 +1,5 @@
 
 ```Raku
-
-my $box = csg_box.name('Box')
-my $sphere = csg_sphere.name('Sphere');
-my $texture_resource = texture_resource.name('Camelia.png');
-
-my $box = Godot::Fun::CSGBox.new.name('Box')
-my $sphere = Godot::Fun::CSGSphere.new.name('Sphere');
-
-# Raku's mascat 3D Sprite
-my $texture_resource = Godot::Fun::TextureResource.new.name('Camelia.png');
-my $sprite3d = Godot::Fun::Sprite3D.new(name => 'Sprite3D');
-$sprite3d.texture($texture_resource);
-
-$scene
-	.add($box)
-	.add($sprite3d, :tx(5);
-
 my $texture_resource = texture_resource.name('Camelia.png');
 $scene
 	.add(csg-box.name('Box'))
@@ -53,12 +36,4 @@ $scene
 # "update": 0,
 # "values": [ Vector3( 0, 0, 4 ) ]
 # }
-
-
-# TODO materials
-#[sub_resource type="SpatialMaterial" id=1]
-#albedo_color = Color( 1, 0, 0, 1 )
-
-#[node name="Node" type="Node" parent="."]
-#material = SubResource( 1 )
 ```
