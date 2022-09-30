@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Not released
+- Add width, height and depth to CSGBox.
+- Add a grey CSG Box floor in the example.
+
 ## 0.4.0 - Fri 2022-09-30
 - Add node name validation.
 - Remove deprecated Scene.add method.

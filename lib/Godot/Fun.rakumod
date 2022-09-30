@@ -150,6 +150,20 @@ class Godot::Fun::Spatial is Godot::Fun::Node {
 class Godot::Fun::CSGBox is Godot::Fun::Node does Godot::Fun::HasAMaterial {
     has Str $.name = 'CSGBox';
     has Str $.type = 'CSGBox';
+    has Real $.width = 2;
+    has Real $.height = 2;
+    has Real $.depth = 2;
+
+    method render() returns Str {
+        my $text = self.Godot::Fun::Node::render;
+        $text ~= qq{width = $!width\n}
+            if $!width != 2.0;
+        $text ~= qq{height = $!height\n}
+            if $!height != 2.0;
+        $text ~= qq{depth = $!depth\n}
+            if $!depth != 2.0;
+        $text
+    }
 }
 
 class Godot::Fun::CSGCylinder is Godot::Fun::Node does Godot::Fun::HasAMaterial {
