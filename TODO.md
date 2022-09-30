@@ -53,4 +53,12 @@ $scene
 # "update": 0,
 # "values": [ Vector3( 0, 0, 4 ) ]
 # }
+
+
+# TODO materials
+#[sub_resource type="SpatialMaterial" id=1]
+#albedo_color = Color( 1, 0, 0, 1 )
+
+#[node name="Node" type="Node" parent="."]
+#material = SubResource( 1 )
 ```
