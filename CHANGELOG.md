@@ -7,6 +7,7 @@
 - Only one screenshot is needed.
 - Deprecated Scene.add.
 - Move rendering logic to child node.
+- Add tests
 
 ## 0.2.2 - Fri 2022-09-30
 - Add a proper Changelog.
