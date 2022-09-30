@@ -6,9 +6,10 @@ use Godot::Fun;
 has $.name;
 has Godot::Fun::Node $.root_node;
 has @children;
+has Godot::Fun::Resource @.resources;
 
 # Deprecated. Please use .add on Node object
-method add(Str $name, Str $type, Real :$tx = 0.0, Real :$ty = 0.0, Real :$tz = 0.0) is DEPRECATED {
+multi method add(Str $name, Str $type, Real :$tx = 0.0, Real :$ty = 0.0, Real :$tz = 0.0) is DEPRECATED {
     # Validate node name
     # node name should not contain the following chars:
     # . : @ / " %
@@ -23,10 +24,17 @@ method add(Str $name, Str $type, Real :$tx = 0.0, Real :$ty = 0.0, Real :$tz = 0
     @children.push(%node);
 }
 
-method to-str {
+multi method add(Godot::Fun::Resource $resource) {
+    @!resources.push($resource);
+}
+
+method render {
     my $text = qq{[gd_scene format=2]\n};
     my $node_name = $!root_node.name;
     my $node_type = $!root_node.type;
+    for @!resources -> $resource {
+        $text ~= $resource.render;
+    }
     $text ~= qq{[node name="$node_name" type="$node_type"]\n};
     for $.root_node.children -> $child {
         $text ~= $child.render;
@@ -37,5 +45,5 @@ method to-str {
 method save(Str $folder) {
     my $project_path = $folder.IO.mkdir;
     my $file_path = $project_path.add($.name ~ '.tscn');
-    $file_path.spurt(self.to-str);
+    $file_path.spurt(self.render);
 }

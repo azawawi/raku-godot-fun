@@ -12,6 +12,23 @@ Godot::Fun - Raku Fun with Godot
 
 =end pod
 
+role Godot::Fun::Resource {
+    has Str $.path is required;
+    has Str $.type;
+    has Int $.id;
+
+    method render() returns Str {
+        my $path = self.path;
+        my $type = self.type;
+        my $id = self.id;
+        my $text = qq{[ext_resource path="$path" type="$type" id=$id]\n};
+        $text
+    }
+}
+
+class Godot::Fun::TextureResource is Godot::Fun::Resource {
+    has Str $.type = 'Texture';
+}
 
 role Godot::Fun::Node {
     has Str $.name = 'Node';
@@ -94,3 +111,19 @@ class Godot::Fun::Camera is Godot::Fun::Node {
     has Str $.name = 'Camera';
     has Str $.type = 'Camera';
 }
+
+class Godot::Fun::Sprite3D is Godot::Fun::Node {
+    has Str $.name = 'Sprite3D';
+    has Str $.type = 'Sprite3D';
+    has Godot::Fun::TextureResource $.texture;
+
+    method render() returns Str {
+        my $id = $!texture.id;
+        my $text = self.Godot::Fun::Node::render;
+        $text ~= qq{texture = ExtResource( $id )\n};
+        $text
+    }
+}
+
+
+

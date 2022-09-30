@@ -8,6 +8,9 @@
 - Deprecated Scene.add.
 - Move rendering logic to child node.
 - Add tests
+- Breaking change: Move Godot::Fun::Resource to Godot::Fun
+- Add ::Sprite3D and ::TextureResource
+- Update example to show Camelia sprite3d :)
 
 ## 0.2.2 - Fri 2022-09-30
 - Add a proper Changelog.

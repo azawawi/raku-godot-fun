@@ -22,10 +22,6 @@ $scene
 	.add(csg-box.name('Box'))
 	.add(sprite3d.name('Sprite3D').tx(5).texture($texture_resource);
 
-# [ext_resource path="res://camelia_icon.png" type="Texture" id=1]
-# [node name="Sprite3D" type="Sprite3D" parent="."]
-# texture = ExtResource( 1 )
-
 # [node name="DirectionalLight" type="DirectionalLight" parent="."]
 # transform = Transform( -0.943089, -0.33254, 0, 0.33254, -0.943089, 0, 0, 0, 1, 0, 0, 0 )
 # shadow_enabled = true
