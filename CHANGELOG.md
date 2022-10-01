@@ -8,6 +8,7 @@
 - Add an orange cone in the example.
 - Add radius, radial_segments, rings and smooth_faces to CSGSphere.
 - Add smooth_faces to CSGCylinder.
+- Add `open` and `run` to `Project`.
 
 ## 0.4.0 - Fri 2022-09-30
 - Add node name validation.

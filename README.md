@@ -75,7 +75,10 @@ my $project = Godot::Fun::Project.new: name => 'Hello From Raku!', scene => $sce
 $project.save: $project_folder;
 
 # Open project in Godot
-run 'godot', $project_folder.IO.add: 'project.godot';
+$project.open: $project_folder;
+
+# Run a project in Godot
+# $project.run: $project_folder;
 ```
 
 For more examples, please see the [examples](examples) folder.

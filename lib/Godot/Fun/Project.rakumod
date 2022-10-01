@@ -65,3 +65,11 @@ method save(Str $folder) {
     my $image = %?RESOURCES<assets/camelia.png>;
     $image.copy($assets_folder.add('camelia.png'));
 }
+
+method open($folder) {
+    run 'godot', $folder.IO.add: 'project.godot';
+}
+
+method run($folder) {
+    run 'godot', :cwd($folder);
+}
