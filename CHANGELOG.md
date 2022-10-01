@@ -1,13 +1,13 @@
 
 # Changelog
 
-## Not released
-- Add width, height and depth to CSGBox.
+## 0.5.0 - Sat 2022-10-01
+- Add `width`, `height` and `depth` to `CSGBox`.
 - Add a grey CSG Box floor in the example.
-- Add radius, height, sides and cone flag to CSGCylinder.
+- Add radius, height, sides and `cone` flag to `CSGCylinder`.
 - Add an orange cone in the example.
-- Add radius, radial_segments, rings and smooth_faces to CSGSphere.
-- Add smooth_faces to CSGCylinder.
+- Add `radius`, `radial_segments`, `rings` and `smooth_faces` to `CSGSphere`.
+- Add `smooth_faces` to `CSGCylinder`.
 - Add `open` and `run` to `Project`.
 - Add ext and sub resources automatically.
 - Add load steps for a proper loading bars.
