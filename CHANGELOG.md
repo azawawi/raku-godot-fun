@@ -1,6 +1,9 @@
 
 # Changelog
 
+## Not released
+- ...
+
 ## 0.5.0 - Sat 2022-10-01
 - Add `width`, `height` and `depth` to `CSGBox`.
 - Add a grey CSG Box floor in the example.
