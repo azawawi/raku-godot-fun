@@ -50,15 +50,6 @@ my $texture = Godot::Fun::TextureResource.new(
 $spatial.add: Godot::Fun::Sprite3D.new(texture => $texture, ty => 3);
 
 my $scene = Godot::Fun::Scene.new: name => 'Hello', root_node => $spatial;
-$scene.add($texture);
-$scene.add($red_material);
-$scene.add($green_material);
-$scene.add($blue_material);
-$scene.add($yellow_material);
-$scene.add($pink_material);
-$scene.add($grey_material);
-$scene.add($orange_material);
-$scene.add($dark_green_material);
 $scene.save: $project_folder;
 
 # Create Godot project

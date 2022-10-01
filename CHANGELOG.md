@@ -9,6 +9,8 @@
 - Add radius, radial_segments, rings and smooth_faces to CSGSphere.
 - Add smooth_faces to CSGCylinder.
 - Add `open` and `run` to `Project`.
+- Add ext and sub resources automatically.
+- Add load steps for a proper loading bars.
 
 ## 0.4.0 - Fri 2022-09-30
 - Add node name validation.
