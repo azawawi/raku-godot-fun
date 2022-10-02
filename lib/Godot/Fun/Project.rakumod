@@ -23,6 +23,8 @@ method to-str {
 
     config/name="$!name"
     run/main_scene="$main_scene_name"
+    boot_splash/image="res://assets/camelia.png"
+    boot_splash/fullsize=false
     config/icon="res://assets/camelia.png"
 
     [gui]
