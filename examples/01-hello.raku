@@ -19,6 +19,8 @@ $spatial.add: Godot::Fun::CSGSphere.new(tx => -5, material => material(blue));
 $spatial.add: Godot::Fun::CSGSphere.new(name => 'Small Sphere', tx => -5, ty => 2,
     radius => 0.5, material => material(dark_green));
 $spatial.add: Godot::Fun::CSGTorus.new(tz => -5, material => material(yellow));
+$spatial.add: Godot::Fun::CSGTorus.new(name => 'Smaller Torus', tz => -5, ty => 2,
+    material => material(dark_green), inner_radius => 1, outer_radius => 2);
 $spatial.add: Godot::Fun::CSGPolygon.new(tz =>  5, material => material(pink));
 $spatial.add: Godot::Fun::CSGMesh.new;
 $spatial.add: Godot::Fun::CSGCylinder.new(name => 'Cone', tx => 8, height => 2, cone => True,

@@ -15,6 +15,8 @@ Godot::Fun - Raku Fun with Godot
 my $ext_id = 1;
 my $sub_id = 1;
 
+enum CSGOperation is export <Union Intersection Subtraction>;
+
 role Godot::Fun::Resource {
     has Str $.type;
 }
@@ -147,7 +149,21 @@ class Godot::Fun::Spatial is Godot::Fun::Node {
     has Str $.type = 'Spatial';
 }
 
-class Godot::Fun::CSGBox is Godot::Fun::Node does Godot::Fun::HasAMaterial {
+role Godot::Fun::CSGShape {
+    has CSGOperation $.operation = Union;
+
+    method render() {
+        my $text = '';
+        unless $!operation == Union {
+            my Int $op = $.operation.Int;
+            $text ~= qq{operation = $op\n};
+        }
+        $text
+    }
+}
+
+class Godot::Fun::CSGBox is Godot::Fun::Node does Godot::Fun::HasAMaterial does Godot::Fun::CSGShape
+{
     has Str $.name = 'CSGBox';
     has Str $.type = 'CSGBox';
     has Real $.width = 2;
@@ -156,6 +172,7 @@ class Godot::Fun::CSGBox is Godot::Fun::Node does Godot::Fun::HasAMaterial {
 
     method render() returns Str {
         my $text = self.Godot::Fun::Node::render;
+        $text ~= self.Godot::Fun::CSGShape::render;
         $text ~= qq{width = $!width\n}
             if $!width != 2;
         $text ~= qq{height = $!height\n}
@@ -166,7 +183,8 @@ class Godot::Fun::CSGBox is Godot::Fun::Node does Godot::Fun::HasAMaterial {
     }
 }
 
-class Godot::Fun::CSGCylinder is Godot::Fun::Node does Godot::Fun::HasAMaterial {
+class Godot::Fun::CSGCylinder is Godot::Fun::Node does Godot::Fun::HasAMaterial does Godot::Fun::CSGShape
+{
     has Str $.name = 'CSGCylinder';
     has Str $.type = 'CSGCylinder';
     has Real $.radius = 1;
@@ -177,6 +195,7 @@ class Godot::Fun::CSGCylinder is Godot::Fun::Node does Godot::Fun::HasAMaterial 
 
     method render() returns Str {
         my $text = self.Godot::Fun::Node::render;
+        $text ~= self.Godot::Fun::CSGShape::render;
         $text ~= qq{radius = $!radius\n}
             if $!radius != 1;
         $text ~= qq{height = $!height\n}
@@ -191,17 +210,20 @@ class Godot::Fun::CSGCylinder is Godot::Fun::Node does Godot::Fun::HasAMaterial 
     }
 }
 
-class Godot::Fun::CSGMesh is Godot::Fun::Node {
+class Godot::Fun::CSGMesh is Godot::Fun::Node does Godot::Fun::CSGShape
+ {
     has Str $.name = 'CSGMesh';
     has Str $.type = 'CSGMesh';
 }
 
-class Godot::Fun::CSGPolygon is Godot::Fun::Node does Godot::Fun::HasAMaterial {
+class Godot::Fun::CSGPolygon is Godot::Fun::Node does Godot::Fun::HasAMaterial does Godot::Fun::CSGShape
+ {
     has Str $.name = 'CSGPolygon';
     has Str $.type = 'CSGPolygon';
 }
 
-class Godot::Fun::CSGSphere is Godot::Fun::Node does Godot::Fun::HasAMaterial {
+class Godot::Fun::CSGSphere is Godot::Fun::Node does Godot::Fun::HasAMaterial does Godot::Fun::CSGShape
+ {
 
     has Str $.name = 'CSGSphere';
     has Str $.type = 'CSGSphere';
@@ -212,6 +234,7 @@ class Godot::Fun::CSGSphere is Godot::Fun::Node does Godot::Fun::HasAMaterial {
 
     method render() returns Str {
         my $text = self.Godot::Fun::Node::render;
+        $text ~= self.Godot::Fun::CSGShape::render;
         $text ~= qq{radius = $!radius\n}
             if $!radius != 1.0;
         $text ~= qq{radial_segments = $!radial_segments\n}
@@ -224,9 +247,31 @@ class Godot::Fun::CSGSphere is Godot::Fun::Node does Godot::Fun::HasAMaterial {
     }
 }
 
-class Godot::Fun::CSGTorus is Godot::Fun::Node does Godot::Fun::HasAMaterial {
+class Godot::Fun::CSGTorus is Godot::Fun::Node does Godot::Fun::HasAMaterial does Godot::Fun::CSGShape
+ {
     has Str $.name = 'CSGTorus';
     has Str $.type = 'CSGTorus';
+    has Real $.inner_radius = 2.0;
+    has Real $.outer_radius = 3.0;
+    has Int $.ring_sides = 6;
+    has Int $.sides = 8;
+    has Bool $.smooth_faces = True;
+
+    method render() returns Str {
+        my $text = self.Godot::Fun::Node::render;
+        $text ~= self.Godot::Fun::CSGShape::render;
+        $text ~= qq{inner_radius = $!inner_radius\n}
+            if $!inner_radius != 2.0;
+        $text ~= qq{outer_radius = $!outer_radius\n}
+            if $!outer_radius != 3.0;
+        $text ~= qq{ring_sides = $!ring_sides\n}
+            if $!ring_sides != 6;
+        $text ~= qq{sides = $!sides\n}
+            if $!sides != 8;
+        $text ~= qq{smooth_faces = False\n}
+            unless $!smooth_faces;
+        $text
+    }
 }
 
 class Godot::Fun::CSGCombiner is Godot::Fun::Node {

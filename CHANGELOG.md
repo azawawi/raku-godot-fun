@@ -5,6 +5,8 @@
 - Add exported subs `color` and `material`.
 - Materials and colors are now stored in a lookup table.
 - Simplify example.
+- Add `CSGShape` role and now CSG operation is rendered correctly.
+- Add `inner_radius`, `outer_radius`, `ring_sides`, `sides`, `smooth_faces` to `CSGTorus`.
 
 ## 0.5.0 - Sat 2022-10-01
 - Add `width`, `height` and `depth` to `CSGBox`.
