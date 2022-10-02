@@ -30,5 +30,5 @@ END {
     # TODO verify why unlink does not work on windows
     # TODO use File::Temp once it is stable on all platforms
     unlink @files;
-    unlink $temp_folder;    
+    unlink $temp_folder;
 }
