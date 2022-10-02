@@ -124,6 +124,7 @@ role Godot::Fun::Node {
 
     method add(Godot::Fun::Node $child) {
         unless $child.is_root {
+            #TODO fix parent node and root node
             #$child.parent = $!name;
         }
         @.children.push($child);
