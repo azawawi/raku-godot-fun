@@ -2,7 +2,9 @@
 # Changelog
 
 ## Not released
-- ...
+- Add exported subs `color` and `material`.
+- Materials and colors are now stored in a lookup table.
+- Simplify example.
 
 ## 0.5.0 - Sat 2022-10-01
 - Add `width`, `height` and `depth` to `CSGBox`.

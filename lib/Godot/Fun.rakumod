@@ -264,5 +264,34 @@ class Godot::Fun::Sprite3D is Godot::Fun::Node {
     }
 }
 
+my %colors;
+my %materials;
 
+enum ColorName is export <red green blue yellow pink grey orange dark_green>;
 
+sub color(ColorName $name) is export {
+    unless %colors{$name}:exists {
+        my $color;
+        given $name {
+            when red    { $color = Godot::Fun::Color.new(red => 1); }
+            when green  { $color = Godot::Fun::Color.new(green => 1); }
+            when blue   { $color = Godot::Fun::Color.new(blue => 1); }
+            when yellow { $color = Godot::Fun::Color.new(red => 1, green => 1); }
+            when pink   { $color = Godot::Fun::Color.new(red => 1, blue => 1); }
+            when grey   { $color = Godot::Fun::Color.new(red => 0.5, green => 0.5, blue => 0.5); }
+            when orange { $color = Godot::Fun::Color.new(red => 1, green => 0.6); }
+            when dark_green { $color = Godot::Fun::Color.new(green => 0.5); }
+            default { die "Cannot find color '$name';" }
+        }
+        %colors{$name} = $color;
+    }
+    return %colors{$name};
+}
+
+sub material(ColorName $color_name) is export {
+    unless %materials{$color_name}:exists {
+        my $color = color($color_name);
+        %materials{$color_name} = Godot::Fun::SpatialMaterial.new(albedo_color => $color);
+    }
+    return %materials{$color_name};
+}
