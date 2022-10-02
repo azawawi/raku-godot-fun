@@ -23,7 +23,7 @@ lives-ok { Godot::Fun::Node.new(name => "ValidName") },
 lives-ok { Godot::Fun::Node.new(name => "Valid Name") },
     "Valid name works with whitespace in the middle";
 
-dies-ok { Godot::Fun::Node.new(name => '  ') }, "Whitespace only Should fail";
+dies-ok { Godot::Fun::Node.new(name => '  ') }, "Whitespace-only name should fail";
 
 my $should_be_trimmed = ' Should Be Trimmed ';
 my $node = Godot::Fun::Node.new(name => $should_be_trimmed);
