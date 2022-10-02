@@ -10,7 +10,7 @@ my $project_folder = 'hello-project';
 
 # Create 3D scene with CSG primitives, directional light and camera
 
-my $spatial = Godot::Fun::Spatial.new;
+my $spatial = Godot::Fun::Spatial.new(is_root => True);
 $spatial.add: Godot::Fun::CSGBox.new(name => 'Floor', ty => -1.0, material => material(grey),
     width => 20, height => 0.25, depth => 20);
 $spatial.add: Godot::Fun::CSGBox.new(material => material(red));
@@ -25,7 +25,10 @@ $spatial.add: Godot::Fun::CSGPolygon.new(tz =>  5, material => material(pink));
 $spatial.add: Godot::Fun::CSGMesh.new;
 $spatial.add: Godot::Fun::CSGCylinder.new(name => 'Cone', tx => 8, height => 2, cone => True,
     material => material(orange));
-$spatial.add: Godot::Fun::CSGCombiner.new;
+my $csg_combiner = Godot::Fun::CSGCombiner.new;
+$csg_combiner.add: Godot::Fun::CSGBox.new(name => 'Box1', material => material(red), tx => 5, ty => -5, oeration => Intersection);
+$csg_combiner.add: Godot::Fun::CSGBox.new(name => 'Box2', material => material(green), tx => 5, ty => -4);
+$spatial.add: $csg_combiner;
 $spatial.add: Godot::Fun::DirectionalLight.new(shadow_enabled => True);
 $spatial.add: Godot::Fun::Camera.new(tx => 2, ty => 4, tz => 11);
 

@@ -91,6 +91,8 @@ role Godot::Fun::HasAMaterial {
 role Godot::Fun::Node {
     has Str $.name = 'Node';
     has Str $.type = 'Node';
+    has Str $.parent is rw = '.';
+    has Bool $.is_root is rw;
     has Real $.tx = 0.0;
     has Real $.ty = 0.0;
     has Real $.tz = 0.0;
@@ -121,22 +123,29 @@ role Godot::Fun::Node {
     }
 
     method add(Godot::Fun::Node $child) {
+        unless $child.is_root {
+            #$child.parent = $!name;
+        }
         @.children.push($child);
     }
 
     method render() returns Str {
         my $name = self.name;
         my $type = self.type;
+        my $parent = self.parent;
         my $tx   = self.tx;
         my $ty   = self.ty;
         my $tz   = self.tz;
-        my $text = qq{[node name="$name" type="$type" parent="."]\n};
+        my $text = qq{[node name="$name" type="$type" parent="$parent"]\n};
         unless $tx == 0 && $ty == 0 && $tz == 0 {
             $text ~= qq{transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, $tx, $ty, $tz )\n};
         }
         if self.does(Godot::Fun::HasAMaterial) && self.material {
             my $material_id = self.material.id;
             $text ~= qq{material = SubResource( $material_id )\n};
+        }
+        for @.children -> $child {
+            $text ~= $child.render;
         }
         $text ~= "\n";
         $text
