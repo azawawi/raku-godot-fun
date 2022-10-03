@@ -26,7 +26,8 @@ $spatial.add: Godot::Fun::CSGMesh.new;
 $spatial.add: Godot::Fun::CSGCylinder.new(name => 'Cone', tx => 8, height => 2, cone => True,
     material => material(orange));
 my $csg_combiner = Godot::Fun::CSGCombiner.new;
-$csg_combiner.add: Godot::Fun::CSGBox.new(name => 'Box1', material => material(red), tx => 5, ty => -5, oeration => Intersection);
+$csg_combiner.add: Godot::Fun::CSGBox.new(name => 'Box1', material => material(red), tx => 5,
+    ty => -5, operation => Intersection);
 $csg_combiner.add: Godot::Fun::CSGBox.new(name => 'Box2', material => material(green), tx => 5, ty => -4);
 $spatial.add: $csg_combiner;
 $spatial.add: Godot::Fun::DirectionalLight.new(shadow_enabled => True);
