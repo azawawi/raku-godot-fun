@@ -63,11 +63,11 @@ $project_folder.IO.add("monitor.tscn").IO.spurt(qq{
 
 "resources/assets/monitor.glb".IO.copy($project_folder.IO.add("assets/monitor.glb"));
 
-#my $hello_scene = $project_folder.IO.add("Hello.tscn").slurp;
-#my $ext_resource = qq{[ext_resource path="res://monitor.tscn" type="PackedScene" id=99]};
-#my @lines = $hello_scene.lines[0], $ext_resource, $hello_scene.lines[1..*];
-#$hello_scene = @lines.join("\n") ~ qq{[node name="monitor" parent="." instance=ExtResource( 99 )]\n};
-#$project_folder.IO.add("Hello.tscn").spurt($hello_scene);
+my $hello_scene = $project_folder.IO.add("Hello.tscn").slurp;
+my $ext_resource = qq{[ext_resource path="res://monitor.tscn" type="PackedScene" id=99]};
+my @lines = ($hello_scene.lines[0], $ext_resource, $hello_scene.lines[1..*]).flat;
+$hello_scene = @lines.join("\n") ~ qq{[node name="monitor" parent="." instance=ExtResource( 99 )]\n};
+$project_folder.IO.add("Hello.tscn").spurt($hello_scene);
 
 # Open project in Godot
 $project.open: $project_folder;
