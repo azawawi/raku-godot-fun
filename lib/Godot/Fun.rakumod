@@ -59,6 +59,10 @@ class Godot::Fun::TextureResource is Godot::Fun::ExtResource {
     has Str $.type = 'Texture';
 }
 
+class Godot::Fun::ArrayMeshResource is Godot::Fun::ExtResource {
+    has Str $.type = 'ArrayMesh';
+}
+
 class Godot::Fun::Color {
     has Real $.red = 0.0;
     has Real $.green = 0.0;
@@ -315,6 +319,20 @@ class Godot::Fun::Sprite3D is Godot::Fun::Node {
         my $id = $!texture.id;
         my $text = self.Godot::Fun::Node::render;
         $text ~= qq{texture = ExtResource( $id )\n};
+        $text
+    }
+}
+
+
+class Godot::Fun::MeshInstance is Godot::Fun::Node {
+    has Str $.name = 'MeshInstance';
+    has Str $.type = 'MeshInstance';
+    has Godot::Fun::ArrayMeshResource $.mesh;
+
+    method render() returns Str {
+        my $id = $!mesh.id;
+        my $text = self.Godot::Fun::Node::render;
+        $text ~= qq{mesh = ExtResource( $id )\n};
         $text
     }
 }

@@ -39,6 +39,12 @@ my $texture = Godot::Fun::TextureResource.new(
 );
 $spatial.add: Godot::Fun::Sprite3D.new(texture => $texture, ty => 3);
 
+my $mesh = Godot::Fun::ArrayMeshResource.new(
+    name => "fun01.obj",
+    path => "res://assets/fun01.obj",
+);
+$spatial.add: Godot::Fun::MeshInstance.new(mesh => $mesh, ty => 5);
+
 my $scene = Godot::Fun::Scene.new: name => 'Hello', root_node => $spatial;
 $scene.save: $project_folder;
 
@@ -57,17 +63,11 @@ $project_folder.IO.add("monitor.tscn").IO.spurt(qq{
 
 "resources/assets/monitor.glb".IO.copy($project_folder.IO.add("assets/monitor.glb"));
 
-my $hello_scene = $project_folder.IO.add("Hello.tscn").slurp;
-
-my $ext_resource = qq{[ext_resource path="res://monitor.tscn" type="PackedScene" id=99]};
-my @lines = $hello_scene.lines[0], $ext_resource, $hello_scene.lines[1..*];
-$hello_scene = @lines.join("\n") ~ qq{[node name="monitor" parent="." instance=ExtResource( 99 )]\n};
-
-# [ext_resource path="res://assets/fun01.obj" type="ArrayMesh" id=1]
-# [node name="MeshInstance" type="MeshInstance" parent="."]
-# mesh = ExtResource( 1 )
-
-$project_folder.IO.add("Hello.tscn").spurt($hello_scene);
+#my $hello_scene = $project_folder.IO.add("Hello.tscn").slurp;
+#my $ext_resource = qq{[ext_resource path="res://monitor.tscn" type="PackedScene" id=99]};
+#my @lines = $hello_scene.lines[0], $ext_resource, $hello_scene.lines[1..*];
+#$hello_scene = @lines.join("\n") ~ qq{[node name="monitor" parent="." instance=ExtResource( 99 )]\n};
+#$project_folder.IO.add("Hello.tscn").spurt($hello_scene);
 
 # Open project in Godot
 $project.open: $project_folder;
