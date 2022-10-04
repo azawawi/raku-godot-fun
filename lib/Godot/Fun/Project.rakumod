@@ -63,9 +63,15 @@ method save(Str $folder) {
 
     # Make assets folder, copy assets to their proper paths
     my $assets_folder = $project_path.add('assets');
+    say %?RESOURCES<assets>;
     $assets_folder.mkdir;
-    my $image = %?RESOURCES<assets/camelia.png>;
-    $image.copy($assets_folder.add('camelia.png'));
+
+    # Copy assets folder from distribution resources to project folder
+    my @assets = @($?DISTRIBUTION.meta<resources>);
+    for @assets -> $asset {
+        my $file = %?RESOURCES{$asset};
+        $file.IO.copy($assets_folder.add($asset.IO.basename));
+    }
 }
 
 method open($folder) {

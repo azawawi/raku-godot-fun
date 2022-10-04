@@ -9,6 +9,7 @@
 - Add `inner_radius`, `outer_radius`, `ring_sides`, `sides`, `smooth_faces` to `CSGTorus`.
 - Show camelia in the boot splash screen.
 - Added trailing whitespace tests.
+- Copy assets folder from distribution resources to project folder.
 
 ## 0.5.0 - Sat 2022-10-01
 - Add `width`, `height` and `depth` to `CSGBox`.

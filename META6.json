@@ -14,6 +14,12 @@
     "Godot::Fun::Project"  : "lib/Godot/Fun/Project.rakumod",
     "Godot::Fun::Scene"    : "lib/Godot/Fun/Scene.rakumod"
   },
-  "resources"     : [ "assets/camelia.png" ],
+  "resources"     : [
+    "assets/camelia.png",
+    "assets/fun01.obj",
+    "assets/fun01.mtl",
+    "assets/fun01.png",
+    "assets/monitor.glb"
+  ],
   "source-url"    : "git://github.com/azawawi/raku-godot-fun.git"
 }
