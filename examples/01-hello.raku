@@ -46,6 +46,25 @@ $scene.save: $project_folder;
 my $project = Godot::Fun::Project.new: name => 'Hello From Raku!', scene => $scene;
 $project.save: $project_folder;
 
+# TODO move this to inside Godot::Fun
+$project_folder.IO.add("monitor.tscn").IO.spurt(qq{
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/monitor.glb" type="PackedScene" id=98]
+
+[node name="monitor" instance=ExtResource( 98 )]
+});
+
+"resources/assets/monitor.glb".IO.copy($project_folder.IO.add("assets/monitor.glb"));
+
+my $hello_scene = $project_folder.IO.add("Hello.tscn").slurp;
+
+my $ext_resource = qq{[ext_resource path="res://monitor.tscn" type="PackedScene" id=99]};
+my @lines = $hello_scene.lines[0], $ext_resource, $hello_scene.lines[1..*];
+$hello_scene = @lines.join("\n") ~ qq{[node name="monitor" parent="." instance=ExtResource( 99 )]\n};
+
+$project_folder.IO.add("Hello.tscn").spurt($hello_scene);
+
 # Open project in Godot
 $project.open: $project_folder;
 
