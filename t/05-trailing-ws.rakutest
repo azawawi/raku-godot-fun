@@ -2,17 +2,14 @@ use v6;
 
 use Test;
 
-my @folders = ['lib', 't', 'examples'];
-
-plan @folders.elems;
-
+plan 1;
 
 sub find_raku_files(Str $folder) {
     my @files;
     my @todo = $folder.IO;
     while @todo {
         for @todo.pop.dir -> $path {
-            if $path ~~ /\.(rakumod|rakutest|raku)$/ {
+            if $path ~~ /\.(rakumod|rakutest|raku|md|json)$/ || $path ~~ /LICENSE/ {
                 @files.push($path.Str);
             }
             @todo.push($path) if $path.d;
@@ -21,17 +18,16 @@ sub find_raku_files(Str $folder) {
     @files
 }
 
-for @folders -> $folder {
-    my $found = False;
-    for find_raku_files($folder) -> $raku_file {
-        my $line_number = 1;
-        for $raku_file.IO.lines -> $line {
-            if $line ~~ /\s+$/ {
-                diag "$raku_file has trailing whitespace on line #$line_number\n$line";
-                $found = True;
-            }
-            $line_number++;
+my $found = False;
+my @files = find_raku_files('.');
+for @files -> $raku_file {
+    my $line_number = 1;
+    for $raku_file.IO.lines -> $line {
+        if $line ~~ /\s+$/ {
+            diag "$raku_file has trailing whitespace on line #$line_number\n$line";
+            $found = True;
         }
+        $line_number++;
     }
-    ok !$found, "Folder '$folder' has no trailing whitespace";
 }
+ok !$found, "Folder has no trailing whitespace";
