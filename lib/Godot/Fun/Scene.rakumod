@@ -18,6 +18,8 @@ method render {
             self.add($child.material);
         } elsif $child.can('texture') {
             self.add($child.texture);
+        } elsif $child.can('mesh') {
+            self.add($child.mesh);
         }
     }
 
