@@ -63,6 +63,10 @@ my $ext_resource = qq{[ext_resource path="res://monitor.tscn" type="PackedScene"
 my @lines = $hello_scene.lines[0], $ext_resource, $hello_scene.lines[1..*];
 $hello_scene = @lines.join("\n") ~ qq{[node name="monitor" parent="." instance=ExtResource( 99 )]\n};
 
+# [ext_resource path="res://assets/fun01.obj" type="ArrayMesh" id=1]
+# [node name="MeshInstance" type="MeshInstance" parent="."]
+# mesh = ExtResource( 1 )
+
 $project_folder.IO.add("Hello.tscn").spurt($hello_scene);
 
 # Open project in Godot
