@@ -23,4 +23,5 @@ nytprof.out
 *.godot
 *.tscn
 *.tres
-hello-project
+01-hello-project
+02-mesh-project
