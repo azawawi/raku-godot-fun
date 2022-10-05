@@ -48,13 +48,36 @@ my $mesh1 = Godot::Fun::ArrayMeshResource.new(
 $spatial.add: Godot::Fun::MeshInstance.new(name => 'MeshInstance 1', mesh => $mesh1, ty => 5);
 
 my $mesh2 = Godot::Fun::CapsuleMeshResource.new;
-$spatial.add: Godot::Fun::MeshInstance.new(name => 'CapsuleMesh', mesh => $mesh2, tx => 5, ty => 5);
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'CapsuleMesh', mesh => $mesh2, tx => 5,
+    ty => 5);
 
 my $mesh3 = Godot::Fun::CubeMeshResource.new;
 $spatial.add: Godot::Fun::MeshInstance.new(name => 'CubeMesh', mesh => $mesh3, tx => -5, ty => 5);
 
 my $mesh4 = Godot::Fun::CylinderMeshResource.new;
-$spatial.add: Godot::Fun::MeshInstance.new(name => 'CylinderMesh', mesh => $mesh4, tx => 5, ty => 8);
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'CylinderMesh', mesh => $mesh4, tx => 5,
+    ty => 8);
+
+my $mesh5 = Godot::Fun::PlaneMeshResource.new;
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'PlaneMesh', mesh => $mesh5, tx => -5, ty => 8);
+
+#TODO PointMesh
+
+my $mesh6 = Godot::Fun::PrismMeshResource.new;
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'PrismMesh', mesh => $mesh6, tx => -5, ty => 8,
+    tz => -3);
+
+my $mesh7 = Godot::Fun::QuadMeshResource.new;
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'QuadMesh', mesh => $mesh6, tx => 5, ty => 8,
+    tz => -3);
+
+my $mesh8 = Godot::Fun::QuadMeshResource.new;
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'SphereMesh', mesh => $mesh8, tx => -5, ty => 5,
+tz => -3);
+
+my $mesh9 = Godot::Fun::TextMeshResource.new;
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'TextMesh', mesh => $mesh9, tx => 5, ty => 5,
+    tz => -3);
 
 my $scene = Godot::Fun::Scene.new: name => 'Hello', root_node => $spatial;
 $scene.save: $project_folder;

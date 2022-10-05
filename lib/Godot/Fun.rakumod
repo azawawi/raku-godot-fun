@@ -97,6 +97,27 @@ class Godot::Fun::CylinderMeshResource is Godot::Fun::SubResource {
     has Str $.type = 'CylinderMesh';
 }
 
+class Godot::Fun::PlaneMeshResource is Godot::Fun::SubResource {
+    has Str $.type = 'PlaneMesh';
+}
+class Godot::Fun::PrismMeshResource is Godot::Fun::SubResource {
+    has Str $.type = 'PrismMesh';
+}
+
+#TODO PointMeshResource
+
+class Godot::Fun::QuadMeshResource is Godot::Fun::SubResource {
+    has Str $.type = 'QuadMesh';
+}
+
+class Godot::Fun::SphereMeshResource is Godot::Fun::SubResource {
+    has Str $.type = 'SphereMesh';
+}
+
+class Godot::Fun::TextMeshResource is Godot::Fun::SubResource {
+    has Str $.type = 'TextMesh';
+}
+
 #TODO handle ShaderMaterial in the future
 role Godot::Fun::HasAMaterial {
     has Godot::Fun::SpatialMaterial $.material;
@@ -349,6 +370,16 @@ class Godot::Fun::MeshInstance is Godot::Fun::Node {
         } elsif $!mesh ~~ Godot::Fun::CubeMeshResource {
            $text ~= qq{mesh = SubResource( $id )\n};
         } elsif $!mesh ~~ Godot::Fun::CylinderMeshResource {
+           $text ~= qq{mesh = SubResource( $id )\n};
+        } elsif $!mesh ~~ Godot::Fun::PlaneMeshResource {
+           $text ~= qq{mesh = SubResource( $id )\n};
+        } elsif $!mesh ~~ Godot::Fun::PrismMeshResource {
+           $text ~= qq{mesh = SubResource( $id )\n};
+        } elsif $!mesh ~~ Godot::Fun::QuadMeshResource {
+           $text ~= qq{mesh = SubResource( $id )\n};
+        } elsif $!mesh ~~ Godot::Fun::SphereMeshResource {
+           $text ~= qq{mesh = SubResource( $id )\n};
+        } elsif $!mesh ~~ Godot::Fun::TextMeshResource {
            $text ~= qq{mesh = SubResource( $id )\n};
         } else {
             die "Unhandled resource type: $!mesh";
