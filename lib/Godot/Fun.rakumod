@@ -75,8 +75,6 @@ class Godot::Fun::SpatialMaterial is Godot::Fun::SubResource {
     has Godot::Fun::Color $.albedo_color;
 
     method render() returns Str {
-        my $type = self.type;
-        my $id = self.id;
         my $r = $.albedo_color.red;
         my $g = $.albedo_color.green;
         my $b = $.albedo_color.blue;
@@ -85,6 +83,18 @@ class Godot::Fun::SpatialMaterial is Godot::Fun::SubResource {
         $text ~= qq{albedo_color = Color( $r, $g, $b, $a )\n\n};
         $text
     }
+}
+
+class Godot::Fun::CapsuleMeshResource is Godot::Fun::SubResource {
+    has Str $.type = 'CapsuleMesh';
+}
+
+class Godot::Fun::CubeMeshResource is Godot::Fun::SubResource {
+    has Str $.type = 'CubeMesh';
+}
+
+class Godot::Fun::CylinderMeshResource is Godot::Fun::SubResource {
+    has Str $.type = 'CylinderMesh';
 }
 
 #TODO handle ShaderMaterial in the future
@@ -327,12 +337,22 @@ class Godot::Fun::Sprite3D is Godot::Fun::Node {
 class Godot::Fun::MeshInstance is Godot::Fun::Node {
     has Str $.name = 'MeshInstance';
     has Str $.type = 'MeshInstance';
-    has Godot::Fun::ArrayMeshResource $.mesh;
+    has Godot::Fun::Resource $.mesh;
 
     method render() returns Str {
         my $id = $!mesh.id;
         my $text = self.Godot::Fun::Node::render;
-        $text ~= qq{mesh = ExtResource( $id )\n};
+        if $!mesh ~~ Godot::Fun::ArrayMeshResource {
+           $text ~= qq{mesh = ExtResource( $id )\n};
+        } elsif $!mesh ~~ Godot::Fun::CapsuleMeshResource {
+           $text ~= qq{mesh = SubResource( $id )\n};
+        } elsif $!mesh ~~ Godot::Fun::CubeMeshResource {
+           $text ~= qq{mesh = SubResource( $id )\n};
+        } elsif $!mesh ~~ Godot::Fun::CylinderMeshResource {
+           $text ~= qq{mesh = SubResource( $id )\n};
+        } else {
+            die "Unhandled resource type: $!mesh";
+        }
         $text
     }
 }

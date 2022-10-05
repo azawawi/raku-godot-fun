@@ -63,7 +63,6 @@ method save(Str $folder) {
 
     # Make assets folder, copy assets to their proper paths
     my $assets_folder = $project_path.add('assets');
-    say %?RESOURCES<assets>;
     $assets_folder.mkdir;
 
     # Copy assets folder from distribution resources to project folder

@@ -30,6 +30,8 @@ $csg_combiner.add: Godot::Fun::CSGBox.new(name => 'Box1', material => material(r
     ty => -5, operation => Intersection);
 $csg_combiner.add: Godot::Fun::CSGBox.new(name => 'Box2', material => material(green), tx => 5, ty => -4);
 $spatial.add: $csg_combiner;
+
+
 $spatial.add: Godot::Fun::DirectionalLight.new(shadow_enabled => True);
 $spatial.add: Godot::Fun::Camera.new(tx => 2, ty => 4, tz => 11);
 
@@ -39,11 +41,20 @@ my $texture = Godot::Fun::TextureResource.new(
 );
 $spatial.add: Godot::Fun::Sprite3D.new(texture => $texture, ty => 3);
 
-my $mesh = Godot::Fun::ArrayMeshResource.new(
+my $mesh1 = Godot::Fun::ArrayMeshResource.new(
     name => "fun01.obj",
     path => "res://assets/fun01.obj",
 );
-$spatial.add: Godot::Fun::MeshInstance.new(mesh => $mesh, ty => 5);
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'MeshInstance 1', mesh => $mesh1, ty => 5);
+
+my $mesh2 = Godot::Fun::CapsuleMeshResource.new;
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'CapsuleMesh', mesh => $mesh2, tx => 5, ty => 5);
+
+my $mesh3 = Godot::Fun::CubeMeshResource.new;
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'CubeMesh', mesh => $mesh3, tx => -5, ty => 5);
+
+my $mesh4 = Godot::Fun::CylinderMeshResource.new;
+$spatial.add: Godot::Fun::MeshInstance.new(name => 'CylinderMesh', mesh => $mesh4, tx => 5, ty => 8);
 
 my $scene = Godot::Fun::Scene.new: name => 'Hello', root_node => $spatial;
 $scene.save: $project_folder;

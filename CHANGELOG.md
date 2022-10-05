@@ -10,6 +10,7 @@
 - Show camelia in the boot splash screen.
 - Added trailing whitespace tests.
 - Copy assets folder from distribution resources to project folder.
+- Add `MeshInstance` mesh types (e.g. Mesh, Sphere, Cube, Capsule, Cylinder, ..etc).
 
 ## 0.5.0 - Sat 2022-10-01
 - Add `width`, `height` and `depth` to `CSGBox`.
